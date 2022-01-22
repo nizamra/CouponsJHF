@@ -15,6 +15,9 @@ import dao.CustomerDao;
 public class Runner {
 	public static void main(String[] args) throws ParseException {
 
+		CheckDelete checker = new CheckDelete();
+		checker.start();
+
 		CompanyDao compD = new CompanyDao();
 		compD.insertCompany(new Company(110, "PaloAlto", "paloalto@paloaltomail.com", "Pal3st5!ne"));
 		compD.insertCompany(new Company(111, "Microsoft", "microsoft@microsoftmail.com", "M!croS0ft5"));
@@ -25,8 +28,7 @@ public class Runner {
 		compD.updateCompanysNameById(114, "Apple");
 		System.out.println(compD.getCompanyDetailsById(114));
 		compD.getCompanys();
-		
-		
+
 		CustomerDao custD = new CustomerDao();
 		custD.insertCustomer(new Customer(110, "Hossam", "Jallad", "hjallad@gmail.com", "hossamjallad"));
 		custD.insertCustomer(new Customer(111, "Ahmad", "Natsheh", "hjanatshehallad@gmail.com", "ahmadnatsheh"));
@@ -38,23 +40,24 @@ public class Runner {
 		System.out.println(custD.getCustomerDetailsById(114));
 		custD.getCustomers();
 
-
 		CategoryDao catD = new CategoryDao();
-		catD.insertCategory(new Category(1,"Air Travel"));
+		catD.insertCategory(new Category(1, "Air Travel"));
 		catD.insertCategory(new Category(2, "Restaurants"));
 		catD.insertCategory(new Category(3, "Grocery"));
 		catD.insertCategory(new Category(4, "Hotels"));
 		catD.getCategorys();
 
-		
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		Date dateStart = (Date) simpleDateFormat.parse("2022-01-01");
 		Date dateEnd = (Date) simpleDateFormat.parse("2022-12-31");
 		CouponDao copD = new CouponDao();
-		copD.insertCoupon(new Coupon(110, 112, 4, "AlKarmel Hotel", "Two nights at the hotel Presidential suite", 750, dateStart, dateEnd, 649.99, "image1"));
-		copD.insertCoupon(new Coupon(111, 112, 2, "Abu Shanab", "A family dinner at Abu Shanab restaurant", 750, dateStart, dateEnd, 349.99, "image35"));
-		copD.insertCoupon(new Coupon(112, 112, 3, "Marmash Grocery", "A coupon for one time only", 750, dateStart, dateEnd, 200.00, "image23"));
+		copD.insertCoupon(new Coupon(110, 112, 4, "AlKarmel Hotel", "Two nights at the hotel Presidential suite", 750,
+				dateStart, dateEnd, 649.99, "image1"));
+		copD.insertCoupon(new Coupon(111, 112, 2, "Abu Shanab", "A family dinner at Abu Shanab restaurant", 750,
+				dateStart, dateEnd, 349.99, "image35"));
+		copD.insertCoupon(new Coupon(112, 112, 3, "Marmash Grocery", "A coupon for one time only", 750, dateStart,
+				dateEnd, 200.00, "image23"));
 		copD.getCoupons();
 	}
 }
