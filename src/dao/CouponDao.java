@@ -13,11 +13,8 @@ public class CouponDao {
 	private DBConnection dbCon = null;
 	private Connection con1;
 
-	public CouponDao() {
+	public CouponDao() throws InterruptedException {
 		dbCon = DBConnection.createInstance();
-	}
-
-	public void fetchConn() throws InterruptedException {
 		con1 = dbCon.getConnection();
 	}
 
@@ -48,9 +45,9 @@ public class CouponDao {
 
 	public Coupon getCouponDetailsById(int id) {
 		Coupon emp = null;
-		Statement stm = null;
+		PreparedStatement stm = null;
 		try {
-			stm = con1.createStatement();
+			stm = con1.prepareStatement("select * from coupons where id=" + id);
 			ResultSet res = stm.executeQuery("select * from coupons where id=" + id);
 			while (res.next()) {
 				emp = new Coupon(res.getInt("id"), res.getInt("companyId"), res.getInt("categoryId"),

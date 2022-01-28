@@ -11,10 +11,10 @@ public class DBConnection {
 
 	Connection con = null;
 
-	String url = "jdbc:mysql://localhost:3306/phase1";
+	String url = "jdbc:mysql://localhost:3306/phase1?useSSL=false&serverTimezone=UTC";
 	String user = "root";
 	String password = "SysOps@99";
-
+	
 	private static Set<Connection> connections = new HashSet<Connection>(10);
 	private static DBConnection instance = null;
 
@@ -22,8 +22,9 @@ public class DBConnection {
 		int i = 10;
 		try {
 			while (i > 0) {
-				Connection conn = createConnection();
-				connections.add(conn);
+				Connection con = createConnection();
+				connections.add(con);
+				notifyAll();
 				i--;
 			}
 		} catch (Exception ex) {
